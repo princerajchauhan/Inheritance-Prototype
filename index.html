@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance & Prototype</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <p data-text="Inheritance & Prototype">Inheritance & Prototype</p>
+    </header>
+
+    <div class="questions">
+
+        <!-- ************************* Question 1 ***************************** -->
+        <div class="quesno">
+
+            <p class="ques"><span>Q1. </span>Create 2 objects - parent and child. Attach methods to parent and use those
+                methods in
+                child object using parents prototype
+            </p>
+            <div class="ans seeCode">
+                <button onclick="seeHide1(this)">See Code</button>
+                <pre class="code" id="Code1">
+
+function Parent(){}
+Parent.prototype.display = ()=>{
+        console.log("Hello world !!!")
+}
+
+function Child() {}
+Child.prototype = Object.create(Parent.prototype)
+
+let c = new Child()
+c.display()
+                </pre>
+            </div>
+            <p class="ans"><span class="output">Output : </span>Hello world !!!</p>
+            <hr size="3px" color="gray" width="90%">
+
+        </div>
+
+        <!-- ************************* Question 2 ***************************** -->
+        <div class="quesno">
+
+            <div class="ques"><span>Q2. </span>Write code to explain prototype chaining</div>
+            <div class="ans seeCode">
+                <button onclick="seeHide2(this)">See Code</button>
+                <pre class="code" id="Code2">
+
+function Person(firstName, lastName){
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+Person.prototype.getFullName = function(){
+    return `${this.firstName} ${this.lastName}`
+}
+
+    let person = new Person('Prince' , 'Chauhan')
+    
+console.log(person.hasOwnProperty('firstName'))
+console.log(person.hasOwnProperty('getFullName')) 
+console.log(person.getFullName())
+                </pre>
+            </div>
+            <div class="ans quesTwo">
+                <span class="output">Output :</span>
+                <div>
+                    <p>true</p>
+                    <p>false</p>
+                    <p>Prince Chauhan</p>
+                </div>
+            </div>
+            <hr size="3px" color="gray" width="90%">
+
+        </div>
+
+        <!-- ************************* Question 3 ***************************** -->
+        <div class="quesno">
+
+            <p class="ques"><span>Q3. </span>Add a method to calculate sum of all elements in Array in array's protype,
+                use that method to calculate sum for multiple arrays
+            </p>
+            <div class="ans seeCode">
+                <button onclick="seeHide3(this)">See Code</button>
+                <pre class="code" id="Code3">
+
+Array.prototype.calculateSum = function(){
+    let sum = 0
+    for(let i=0; i < this.length; i++){
+        sum += this[i];
+    }
+    return sum
+}
+let arr = [1, 2, 3, 5, 7]
+let arr1 = [2, 8, 0, 3, 4]
+console.log(arr.calculateSum())
+console.log(arr1.calculateSum())
+                </pre>
+            </div>
+            <div class="ans quesTwo">
+                <span class="output">Output :</span>
+                <div>
+                    <p>18</p>
+                    <p>17</p>
+                </div>
+            </div>
+            <hr size="3px" color="gray" width="90%">
+
+        </div>
+
+        <!-- ************************* Question 4 ***************************** -->
+        <div class="quesno">
+
+            <p class="ques"><span>Q4. </span>Write a JavaScript function to retrieve all the names of object's own and
+                inherited properties.
+            </p>
+            <div class="ans seeCode">
+                <button onclick="seeHide4(this)">See Code</button>
+                <pre class="code" id="Code4">
+
+function propertyNames(obj) {
+    var keys = [];
+    for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+            keys.push(prop);
+        } 
+    } 
+    var proto = Object.getPrototypeOf(obj);
+    if (proto !== null) {
+        var inheritPropNames = propertyNames(proto);
+        keys = keys.concat(inheritPropNames);
+    } 
+    return keys;
+} 
+function Person() {
+    this.gender = "Male";
+} 
+Person.prototype = {
+    name: "Prince",
+    age: 21
+};
+var person = new Person();
+person.city = "Delhi";
+console.log(propertyNames(person));
+                </pre>
+            </div>
+            <div class="ans quesTwo"><span class="output">Output :</span>[ 'gender', 'city', 'name', 'age' ]</div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

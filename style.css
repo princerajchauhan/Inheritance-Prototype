@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: rgb(10, 99, 94);
+    color: white ;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+header > p{
+    font-size: 50px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0);
+    position: relative;
+}
+header > p::before{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    color: brown;
+    border-right: 5px solid yellow;
+    border-bottom: 4px solid red;
+    filter: drop-shadow(0 0 15px white);
+    overflow: hidden;
+    white-space: nowrap;
+    animation: animate 6s linear infinite;
+}
+@keyframes animate {
+    0%{
+        width: 0;
+    }
+    70%{
+        width: 102%;
+    }
+}
+
+
+/* ****************************** QUESTION ******************************** */
+
+.questions{
+    margin: 50px 60px;
+}
+
+.quesno{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+.ques{
+    font-size: 20px;
+}
+span{
+    font-weight: bold;
+    filter: drop-shadow(0 0 5px white);
+}
+.ans{
+    margin-left: 70px;
+}
+.output{
+    font-size: 19px;
+    font-weight: 500;
+    filter: drop-shadow(0 0 0 white);
+}
+
+button{
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: orchid;
+    color: white;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+button:hover{
+    background-color: white;
+    filter: drop-shadow(0 0 5px white);
+    color: orchid;
+}
+
+.code{
+    display: none;
+}
+
+.seeCode{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+pre{
+    color: burlywood;
+}
+
+.quesTwo{
+    display: flex;
+    gap: 10px;
+}
